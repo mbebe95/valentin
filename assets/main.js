@@ -1,18 +1,32 @@
-function animateValue(obj, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      obj.innerHTML = Math.floor(progress * (end - start) + start);
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
-  }
-  
-  const obj = document.getElementById("value");
-  animateValue(obj, 0, 234, 5000);
+ // Állítsd be a kezdő dátumot (pl. 2023-01-01)
+ const startDate = new Date("2023-06-25");
+        
+ // Számold ki az eltelt napokat
+ function calculateDaysElapsed() {
+     const today = new Date();
+     const timeDiff = today - startDate;
+     const daysElapsed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+     return daysElapsed;
+ }
+
+ // Felpörgő animációs hatás
+ function animateCounter(targetNumber) {
+     const counterElement = document.getElementById("counter");
+     let currentCount = 0;
+     const interval = setInterval(() => {
+         currentCount += Math.ceil(targetNumber / 100); // gyorsítás a pörgéshez
+         if (currentCount >= targetNumber) {
+             counterElement.textContent = targetNumber;
+             clearInterval(interval);
+         } else {
+             counterElement.textContent = currentCount;
+         }
+     }, 20); // sebesség a pörgéshez
+ }
+
+ // Kiszámítja az eltelt napokat, és elindítja az animációt
+ const daysElapsed = calculateDaysElapsed();
+ animateCounter(daysElapsed);
 
   document.querySelector('#no').addEventListener('click', function(){
     document.querySelector('.no').style.display = 'none';
