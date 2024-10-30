@@ -11,7 +11,7 @@
 
  // Felpörgő animációs hatás
  function animateCounter(targetNumber) {
-     const counterElement = document.getElementById("counter");
+     const counterElement = document.getElementById("value");
      let currentCount = 0;
      const interval = setInterval(() => {
          currentCount += Math.ceil(targetNumber / 100); // gyorsítás a pörgéshez
